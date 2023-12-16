@@ -1,0 +1,65 @@
+/* CSS cho khung bao .lopngoai */
+
+body{
+    background-color:white;
+}
+
+.lopngoai {
+    margin-top: 10px;
+    width: 600px;
+    height: 400px;
+    border: 2px solid #ccc; /* Đường viền 1px và màu xám nhạt */
+    border-radius: 6px; /* Làm cho viền trở thành hình tròn */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+
+.Loptrong{
+    background-color: white;
+    width: 230px;
+    height: 200px;
+    border: 5px solid black; /* Đường viền 1px và màu xám nhạt */
+    border-radius: 3px;
+    margin-top: 110px;
+    margin-left: 180px;
+}
+
+
+
+.tieude{
+    margin-bottom: 10px;
+    margin-left: 75px;
+    margin-top: 10px;
+}
+
+
+.item{
+    margin-top: 2px;
+    margin-left: 25px;
+}
+
+
+.lb{
+    margin-top: 2px;
+    margin-left: 25px;
+}
+
+
+
+ .button-container {
+    margin-top: 10px;
+    margin-left: 50px;
+    display: flex;
+       
+    }
+
+    .button {
+        width: 50px;
+        height: 40px;
+        margin-left: 5px;
+       
+    }   

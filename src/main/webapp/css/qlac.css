@@ -1,0 +1,57 @@
+/* Form styles */
+
+container{
+    background-color: white;
+}
+
+form {
+    width: 50%;
+    margin: auto;
+    padding: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Style for table inside the form */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: auto;
+     
+}
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 2px;
+    text-align: center;
+    width: 100px; 
+    font-size: 16px;
+  
+}
+
+table th {
+     background-color: white;
+}
+
+
+
+/* Style for form buttons */
+
+button[name="action"] {
+    width: 70px;
+    height: 30px; /* Điều chỉnh chiều cao của nút */
+    background-color: #dc3545;
+    color: white;
+    margin-right: 1px;
+    outline: none;
+    border: none; /* Loại bỏ viền */
+    padding: 1px; /* Padding để điều chỉnh khoảng cách bên trong nút */
+}
+button[name="action"]:hover {
+    background-color: #c82333; /* Màu đỏ nhạt khi hover qua nút Delete */
+}
