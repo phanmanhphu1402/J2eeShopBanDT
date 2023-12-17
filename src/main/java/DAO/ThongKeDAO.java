@@ -176,27 +176,43 @@ public class ThongKeDAO {
         }
         return list;
     }
-        public int countAllProduct() {
+
+    public int countAllProduct() {
         String query = "select count(*) from sanpham";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-               return rs.getInt(1);
+                return rs.getInt(1);
             }
         } catch (Exception e) {
         }
         return 0;
     }
-        public int SumAllProduct() {
+
+    public int SumAllProduct() {
         String query = "SELECT SUM(TongTien) FROM ChiTietDonBan;";
         try {
             conn = new DBContext().getConnection();//mo ket noi voi sql
             ps = conn.prepareStatement(query);
             rs = ps.executeQuery();
             while (rs.next()) {
-               return rs.getInt(1);
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+        }
+        return 0;
+    }
+
+    public int CountAllBill() {
+        String query = "select count(*) from hoadonban;";
+        try {
+            conn = new DBContext().getConnection();//mo ket noi voi sql
+            ps = conn.prepareStatement(query);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
             }
         } catch (Exception e) {
         }

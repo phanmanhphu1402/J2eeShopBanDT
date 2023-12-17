@@ -153,13 +153,13 @@
         }
     </style>
 </head>
-<body class="bg-light">
+<body>
 
+<head><jsp:include page="views/admin/components/LeftAdmin.jsp"></jsp:include></head>
     <!--Sản phẩm-->
-    <div class="container rounded ml-3 col-md-10">
-        <jsp:include page="views/admin/components/LeftAdmin.jsp"></jsp:include>
+    <div class="container pt-4">
+        <section class="mb-4">
             <div class="text-center title">Chi tiết sản phẩm</div>
-            <div class="container mt-1">
                 <div class="list-group overflow-auto border border-secondary" style="max-height: 600px;">
                     <table class="table table-striped">
                         <thead>
@@ -217,37 +217,35 @@
                         phẩm</button>
                 </div>
             </div>
-        </div>
+    </section>
+</div>
 
-
-    </div>
-
-    <form id="myForm" action="Chi-tiet" method="post" style="width: 850px;">
-        <input type="hidden" name="masp" value="${masp}">
-        <input type="hidden" name="action" value="action3">
-        <div class="text-center title">Thêm chi tiết</div>
-        <div class="container-fluid m-0 p-0">
-            <div class="row border border-2 border-black ">
-                <div class="col-md-6 ">
-                    Màu
-                    <br><input class="m-1" stype="text" name="mau" cols="30"><br>
-                    Số lượng
-                    <br><input tyle="number" class="m-1" name="soluong" cols="30"><br>
-                </div>
-                <div class="col-md-6">
-                    Giá nhập
-                    <br><input type="number" class="m-1" name="gianhap" cols="30"><br>
-                    Giá bán
-                    <br><input tyle="number" class="m-1" name="giaban" cols="30"></textarea><br>
-                </div>
-                <div class="d-flex justify-content-center">
-                    <button style="width: 100px;" type="submit" class="btn btn-primary">Xác nhận</button>
-                    <button style="width: 100px;" type="button" id="cancel" class="btn btn-danger ms-4">Huỷ</button>
-                </div>
+<form id="myForm" action="Chi-tiet" method="post" style="width: 850px;">
+    <input type="hidden" name="masp" value="${masp}">
+    <input type="hidden" name="action" value="action3">
+    <div class="text-center title">Thêm chi tiết</div>
+    <div class="container-fluid m-0 p-0">
+        <div class="row border border-2 border-black ">
+            <div class="col-md-6 ">
+                Màu
+                <br><input class="m-1" stype="text" name="mau" cols="30"><br>
+                Số lượng
+                <br><input tyle="number" class="m-1" name="soluong" cols="30"><br>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                Giá nhập
+                <br><input type="number" class="m-1" name="gianhap" cols="30"><br>
+                Giá bán
+                <br><input tyle="number" class="m-1" name="giaban" cols="30"></textarea><br>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button style="width: 100px;" type="submit" class="btn btn-primary">Xác nhận</button>
+                <button style="width: 100px;" type="button" id="cancel" class="btn btn-danger ms-4">Huỷ</button>
+            </div>
         </div>
+        <div class="col-md-3"></div>
     </div>
+</div>
 </form>
 
 <script>

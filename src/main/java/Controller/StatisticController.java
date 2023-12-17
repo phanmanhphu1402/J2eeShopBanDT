@@ -53,6 +53,9 @@ public class StatisticController extends HttpServlet {
 
         int sumAllProduct = thongke.SumAllProduct();
         request.setAttribute("sumAllProduct", sumAllProduct);
+        
+        int countAllBill = thongke.CountAllBill();
+        request.setAttribute("countAllBill", countAllBill);
 
         request.setAttribute("VIEW", urlThongKeAdmin);
         request.getRequestDispatcher(urlAdmin).forward(request, response);
