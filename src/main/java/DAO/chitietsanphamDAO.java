@@ -223,4 +223,21 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         return list;
     }
     
+    public void updateSoLuong(String id, int quantity) {
+        chitietsanphamDAO ctDAO = new chitietsanphamDAO();
+        int soLuong = ctDAO.findById2(id).getSoluong();
+        soLuong = soLuong - quantity;
+        Connection conn = null;
+        try {
+            conn = DataBase.getConnection();
+            PreparedStatement st = conn.prepareStatement("UPDATE ChiTietSanPham SET SoLuong = ? WHERE MaCT = ?");
+            st.setInt(1, soLuong);
+            st.setString(2, id);
+            st.executeUpdate();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.err.println("Cant update Quantity");
+        }
+    }
+    
 }

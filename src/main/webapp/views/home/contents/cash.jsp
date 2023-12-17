@@ -29,7 +29,7 @@
                         <c:forEach var="rows" items="${shop }">
                             <c:set var="count" value="${count+1}"/>
                             <tr>
-                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.masp}" name="coded">
+                                <td>${count }</td><input type="hidden" value="${rows.value.sanpham.mact}" name="coded">
                                 <td style="width: 20%"><img src="images${rows.value.sanpham.hinhanh}" alt="product-item" class="img-fluid" ></td>
                                 <td>${rows.value.sanpham.tensp}<input type="hidden" value="${rows.value.sanpham.tensp}" name="named"></td>
                                 <td>${rows.value.sanpham.mau}<input type="hidden" value="${rows.value.sanpham.mau}" name="colord"></td>

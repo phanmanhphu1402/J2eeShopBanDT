@@ -43,6 +43,7 @@ public class CartServlet extends HttpServlet {
     String urlSection2 = "/views/home/components/section2.jsp";
     String urlConfirmed = "/views/home/contents/confirmed.jsp";
     KhachHangDAO khDAO = new KhachHangDAO();
+    chitietsanphamDAO ctDAO = new chitietsanphamDAO();
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -223,6 +224,8 @@ public class CartServlet extends HttpServlet {
 
                 DetailOrderDAO detailOrderDAO = new DetailOrderDAO();
                 for (int i = 0; i < listProductCode.length; i++) {
+                    ctDAO.updateSoLuong(listProductCode[i], Integer.parseInt(listProductQuantity[i]));
+                    System.err.println(listProductCode[i]+" |||| "+Integer.parseInt(listProductQuantity[i]));
                     DetailOrder detailOrder = new DetailOrder(maHD, listProductCode[i], Integer.parseInt(listProductPrice[i]), Integer.parseInt(listProductQuantity[i]), Integer.parseInt(listProductTotalPrice[i]));
                     detailOrderDAO.addDetailOrder(detailOrder, i + 1);
                 }
