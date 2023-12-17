@@ -143,7 +143,7 @@
                             </div>
                             <div id="quantityError" class="text-red-500"></div>
                             <div class="px-5 py-4 flex mt-8">
-                                <button
+                                <a href="CartServlet?action=AddToCart&productid=${ct.getMact()}"
                                     class="border border-[#338dbc] bg-[#338dbc]/20 flex p-3 rounded-sm cursor-pointer"
                                     >
                                     <svg
@@ -162,7 +162,7 @@
                                     </svg>
 
                                     <span class="text-[#338dbc]">Thêm vào giỏ hàng</span>
-                                </button>
+                                </a>
                                 <a href="/cart/a">
                                     <button
                                         class="bg-[#338dbc] text-white px-10 py-3 ml-5 cursor-pointer"

@@ -32,9 +32,18 @@
                             <li class="nav-item">
                                 <a class="nav-link me-4" href="#mobile-products">Products</a>
                             </li>
+                            <%
+                                HttpSession sessionDangNhap = request.getSession();
+                                
+                                if(sessionDangNhap.getAttribute("loginUserID") != null){
+                                String id = sessionDangNhap.getAttribute("loginUserID").toString();%>
                             <li class="nav-item">
-                                <a class="nav-link me-4" href="/Trang-chu?action=View Info">Info</a>
+                                <a class="nav-link me-4" href="/Trang-chu?action=View Info&accountid=<%=id%>">Info</a>
+                            </li>    
+                            <li class="nav-item">
+                                <a class="nav-link me-4" href="/Trang-chu?action=Logout">Logout</a>
                             </li>
+                                <%}%>
                             
                             <li class="nav-item">
                                 <div class="user-items ps-5">

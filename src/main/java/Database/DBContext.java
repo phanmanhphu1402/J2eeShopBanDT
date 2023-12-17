@@ -11,7 +11,7 @@ public class DBContext {
             //String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=JEE;encrypt=false";
             String dbUrl = "jdbc:sqlserver://localhost:1433;DatabaseName=DoAnJ2EE;encrypt=false";
             String username = "sa";
-            String password = "123456aA@$";
+            String password = "123";
             conn = DriverManager.getConnection(dbUrl, username, password);
         } catch (Exception e) {
             System.out.println("Lỗi: " + e.getMessage()); // In thông báo lên console

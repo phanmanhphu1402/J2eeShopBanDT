@@ -4,9 +4,12 @@
  */
 package DAO;
 
+import Database.DBContext;
 import Database.DataBase;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,4 +44,25 @@ public class NhanVienDAO {
         }
         return list;
     }    
+    
+    public nhanvien searchNhanVienByMaTK(int i) {
+        String sql = "SELECT * FROM NhanVien WHERE MaTK = ?";
+        try {
+            Connection conn = DBContext.getConnection();
+            PreparedStatement st = conn.prepareStatement(sql);
+            st.setInt(1, i);
+            ResultSet rs = st.executeQuery();
+            if (rs.next()) {
+                return new nhanvien(rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDate(6),
+                        rs.getString(7));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        return null;
+    }
 }

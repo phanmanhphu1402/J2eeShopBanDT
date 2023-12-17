@@ -39,7 +39,8 @@ public class OrderDAO {
                 String maKM = rs.getString("MaKM");
                 int tongTien = rs.getInt("TongTien");
                 Date ngayTao = rs.getDate("NgayTao");
-                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                boolean tinhTrang = rs.getBoolean("TinhTrang");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao, tinhTrang);
                 ls.add(ord);
 
             }
@@ -66,7 +67,8 @@ public class OrderDAO {
                 String maKM = rs.getString("MaKM");
                 int tongTien = rs.getInt("TongTien");
                 Date ngayTao = rs.getDate("NgayTao");
-                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                boolean tinhTrang = rs.getBoolean("TinhTrang");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao, tinhTrang);
                 order = ord;
             }
             conn.close();
@@ -91,7 +93,8 @@ public class OrderDAO {
                 String maKM = rs.getString("MaKM");
                 int tongTien = rs.getInt("TongTien");
                 Date ngayTao = rs.getDate("NgayTao");
-                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                boolean tinhTrang = rs.getBoolean("TinhTrang");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao, tinhTrang);
                 ls.add(ord);
             }
             conn.close();
@@ -116,7 +119,8 @@ public class OrderDAO {
                 String maKM = rs.getString("MaKM");
                 int tongTien = rs.getInt("TongTien");
                 Date ngayTao = rs.getDate("NgayTao");
-                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                boolean tinhTrang = rs.getBoolean("TinhTrang");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao, tinhTrang);
                 ls.add(ord);
             }
             conn.close();
@@ -141,7 +145,8 @@ public class OrderDAO {
                 String maKM = rs.getString("MaKM");
                 int tongTien = rs.getInt("TongTien");
                 Date ngayTao = rs.getDate("NgayTao");
-                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                boolean tinhTrang = rs.getBoolean("TinhTrang");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao, tinhTrang);
                 ls.add(ord);
             }
             conn.close();
@@ -166,7 +171,8 @@ public class OrderDAO {
                 String maKM = rs.getString("MaKM");
                 int tongTien = rs.getInt("TongTien");
                 Date ngayTao = rs.getDate("NgayTao");
-                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao);
+                boolean tinhTrang = rs.getBoolean("TinhTrang");
+                Order ord = new Order(maHD, maNV, maKH, maKM, tongTien, ngayTao, tinhTrang);
                 ls.add(ord);
             }
             conn.close();
@@ -201,19 +207,17 @@ public class OrderDAO {
         }
     }
 
-    public int addOrder(Order order) {
+    public void addOrder(Order order) {
         try {
             Connection conn = DataBase.getConnection();
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO HoaDonBan (MaHDB, MaNV, MaKH, MaKM, TongTien, NgayTao) VALUES ('" + order.getMaHD() + "','" + order.getMaNV() + "','" + order.getMaKH() + "','" + order.getMaKM() + "','" + order.getTongTien() + "','" + order.getNgayTao() + "')";
+            String sql = "INSERT INTO HoaDonBan (MaHDB, MaNV, MaKH, MaKM, TongTien, NgayTao, TinhTrang) VALUES ('" + order.getMaHD() + "', 'Unconfirm', '" + order.getMaKH() + "','" + order.getMaKM() + "','" + order.getTongTien() + "','" + order.getNgayTao() + "',0)";
             ResultSet rs = stmt.executeQuery(sql);
 //			stmt.executeQuery(sql);
             conn.close();
-            return 1;
         } catch (Exception e) {
             e.printStackTrace();
             System.out.print("Cant connect BD");
-            return 0;
         }
     }
 
@@ -230,41 +234,56 @@ public class OrderDAO {
             System.out.print("Cant connect BD");
         }
     }
-public void sendEmail(HttpServletRequest request, HttpServletResponse response, khachhang kh, Order order) {
-    	final String username = "thuythatthanthanh@gmail.com";// email
-		final String password = "werr iryb ckcf xipx";//email app password
-		Properties prop = new Properties();
-		prop.put("mail.smtp.host", "smtp.gmail.com");
-		prop.put("mail.smtp.port", "587");
-		prop.put("mail.smtp.auth", "true");
-		prop.put("mail.smtp.starttls.enable", "true");
-                prop.put("mail.smtp.ssl.trust", "*");
-		prop.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
-		Session session = Session.getInstance(prop, new jakarta.mail.Authenticator() {
-			protected PasswordAuthentication getPasswordAuthentication() {
-				return new PasswordAuthentication(username, password);
-			}
-		});
-		//dang nhap dc email
-		String emailTo = kh.getEmail();
-		String emailSubject = "Email xác nhận đặt hàng";
-		String emailContent = "Mã Đơn hàng: "+order.getMaHD()+" Tổng giá: "+order.getTongTien()+" giao đến cho anh/chị: "+kh.getHoTen()+
-				" địa chỉ email là: "+kh.getEmail()+" Số điện thoại "+kh.getSDT()+". Đơn hàng sẽ giao tới trong vòng 2 ngày nữa. Cảm ơn quý khách đã mua hàng";
-		try {
-			Message message = new MimeMessage(session);
-			message.setFrom(new InternetAddress(username));
-			message.setRecipients(
-					Message.RecipientType.TO, 
-					InternetAddress.parse(emailTo)
-			);
-			message.setSubject(emailSubject);
-			message.setText(emailContent);
-			Transport.send(message);
-			System.out.print("Done");
-		} catch (Exception e) {
-			e.printStackTrace();
-			// TODO: handle exception
-		}
+
+    public void confirmOrder(String id, String maNV) {
+        try {
+            Connection conn = DataBase.getConnection();
+            Statement stmt = conn.createStatement();
+            String sql = "UPDATE HoaDonBan SET MaNV ='" + maNV + "', TinhTrang = 'true' WHERE MaHDB ='" + id + "'";
+            ResultSet rs = stmt.executeQuery(sql);
+//			stmt.executeQuery(sql);
+            conn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.out.print("Cant connect BD");
+        }
+    }
+
+    public void sendEmail(HttpServletRequest request, HttpServletResponse response, khachhang kh, Order order) {
+        final String username = "thuythatthanthanh@gmail.com";// email
+        final String password = "werr iryb ckcf xipx";//email app password
+        Properties prop = new Properties();
+        prop.put("mail.smtp.host", "smtp.gmail.com");
+        prop.put("mail.smtp.port", "587");
+        prop.put("mail.smtp.auth", "true");
+        prop.put("mail.smtp.starttls.enable", "true");
+        prop.put("mail.smtp.ssl.trust", "*");
+        prop.setProperty("mail.smtp.ssl.protocols", "TLSv1.2");
+        Session session = Session.getInstance(prop, new jakarta.mail.Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(username, password);
+            }
+        });
+        //dang nhap dc email
+        String emailTo = kh.getEmail();
+        String emailSubject = "Email xác nhận đặt hàng";
+        String emailContent = "Mã Đơn hàng: " + order.getMaHD() + " Tổng giá: " + order.getTongTien() + " giao đến cho anh/chị: " + kh.getHoTen()
+                + " địa chỉ email là: " + kh.getEmail() + " Số điện thoại " + kh.getSDT() + ". Đơn hàng sẽ giao tới trong vòng 2 ngày nữa. Cảm ơn quý khách đã mua hàng";
+        try {
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress(username));
+            message.setRecipients(
+                    Message.RecipientType.TO,
+                    InternetAddress.parse(emailTo)
+            );
+            message.setSubject(emailSubject);
+            message.setText(emailContent);
+            Transport.send(message);
+            System.out.print("Done");
+        } catch (Exception e) {
+            e.printStackTrace();
+            // TODO: handle exception
+        }
     }
 //	public static void main(String[] args) {
 //		long millis = System.currentTimeMillis();

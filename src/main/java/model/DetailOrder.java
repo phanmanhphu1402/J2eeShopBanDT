@@ -9,6 +9,7 @@ public class DetailOrder {
     private int tongTien;
     private String tenSP;
     private String hinhanh;
+    private String mau;
 
     public DetailOrder(String maHD, String maSP, int donGia, int soLuong, int tongTien) {
         super();
@@ -19,7 +20,7 @@ public class DetailOrder {
         this.tongTien = tongTien;
     }
 
-    public DetailOrder(String maHD, String maSP, int donGia, int soLuong, int tongTien, String tenSP, String hinhanh) {
+    public DetailOrder(String maHD, String maSP, int donGia, int soLuong, int tongTien, String tenSP, String hinhanh, String mau) {
         this.maHD = maHD;
         this.maSP = maSP;
         this.donGia = donGia;
@@ -27,7 +28,15 @@ public class DetailOrder {
         this.tongTien = tongTien;
         this.tenSP = tenSP;
         this.hinhanh = hinhanh;
-        
+        this.mau = mau;
+    }
+
+    public String getMau() {
+        return mau;
+    }
+
+    public void setMau(String mau) {
+        this.mau = mau;
     }
 
     public String getHinhanh() {

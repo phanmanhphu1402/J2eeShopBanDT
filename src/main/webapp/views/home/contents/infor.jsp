@@ -31,7 +31,7 @@
                     <td>${order.maKM }</td>
                     <td>${order.tongTien } VND</td>
                     <td>${order.ngayTao }</td>
-                    <td><a href="/J2eeDoAn/trang-chu?action=Detail&orderId=${order.maHD}" class="btn btn-success">Chi tiết</a></td>
+                    <td><a href="/Trang-chu?action=Detail&orderId=${order.maHD}" class="btn btn-success">Chi tiết</a></td>
                 </tr>
 
             </c:forEach>

@@ -16,67 +16,58 @@
                     <h5 class="mb-0 text-center"><strong>Quản lý Hóa Đơn</strong></h5>
                 </div>
 
-                <div class="row">
-                    <div class="col-sm-12 text-left">
-                        <form action="xuatExcelTop10ProductControl" method="get"> 
-                            <button type="submit" class="mb-0 text-center btn btn-primary" style="width: 150px;height: 40px">Xuất file Excel</button> 
-                        </form>    
-                    </div>
-                </div>
-
                 <c:if test="${mess!=null }">
                     <div class="alert alert-success" role="alert">
                         ${mess}
                     </div>
                 </c:if>
                 <div class="panel-heading" style="display: flex; justify-content: space-between;">
-                    <form action="/J2eeDoAn/OrderManagerServlet" method="post">
+                    <form action="OrderManagerServlet" method="post">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search by Nhân viên" name="maNV" required>
                             <div class="input-group-btn">
                                 <input type="hidden" value="SearchByMaNhanVien" name="action">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                <button class="btn btn-default" type="submit"  style="width: 60px;height: 40px">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
                     <br>
-                    <form action="/J2eeDoAn/OrderManagerServlet" method="post">
+                    <form action="OrderManagerServlet" method="post">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search by Khách hàng" name="maKH" required>
                             <div class="input-group-btn">
                                 <input type="hidden" value="SearchByMaKhachHang" name="action">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                <button class="btn btn-default" type="submit"  style="width: 60px;height: 40px">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
                     <br>
-                    <form action="/J2eeDoAn/OrderManagerServlet" method="post">
+                    <form action="OrderManagerServlet" method="post">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search by mã khuyến mãi" name="maKM" required>
                             <div class="input-group-btn">
                                 <input type="hidden" value="SearchByMaKhuyenMai" name="action">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                <button class="btn btn-default" type="submit" style="width: 60px;height: 40px">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </div>
                         </div>
                     </form>
-                    <form action="/J2eeDoAn/OrderManagerServlet" method="post">
+                    <form action="OrderManagerServlet" method="post">
                         <div class="input-group">
                             <input type="date" class="form-control" placeholder="Search" name="date" required>
                             <div class="input-group-btn">
                                 <input type="hidden" value="SearchByDate" name="action">
-                                <button class="btn btn-default" type="submit">
-                                    <i class="glyphicon glyphicon-search"></i>
+                                <button class="btn btn-default" type="submit" style="width: 60px;height: 40px">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
                                 </button>
                             </div>
                         </div>
-                    </form>
-                    <button type="button" class="btn btn-success">Advance</button>												    	
+                    </form>											    	
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -89,6 +80,7 @@
                                     <th>Mã khuyến mãi áp dụng</th>
                                     <th>Tổng tiền</th>
                                     <th>Ngày tạo</th>
+                                    <th>Tình Trạng</th>
                                     <th colspan="3" style="text-align: center">Action</th>
                                 </tr>
                             </thead>
@@ -102,8 +94,8 @@
                                         <td>${order.maKM }</td>
                                         <td>${order.tongTien } VND</td>
                                         <td>${order.ngayTao }</td>
+                                        <td>${order.tinhTrang?'Đã xử lí':'Chưa xử lí'}</td>
                                         <td><a href="OrderManagerServlet?action=Detail&orderId=${order.maHD}" class="btn btn-success" style="width: 90px;height: 40px">Chi tiết</a></td>
-                                        <td><a href="OrderManagerServlet?action=Update&orderId=${order.maHD}" class="btn btn-success" style="width: 120px;height: 40px">Chưa xử lý</a></td>
                                         <td><a class="mb-0 text-center btn btn-danger" onclick="confirmDeleteOrder('${order.maHD}')" style="width: 80px;height: 40px">Xóa</a></td>
                                 
                                     </tr>

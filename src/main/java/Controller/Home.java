@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.DetailOrderDAO;
+import DAO.KhachHangDAO;
 import DAO.OrderDAO;
 import DAO.sanphamDAO;
 import jakarta.servlet.RequestDispatcher;
@@ -14,6 +15,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.ArrayList;
 import java.util.List;
 import model.Account;
@@ -33,6 +35,7 @@ public class Home extends HttpServlet {
     khachhang kh = new khachhang();
     nhanvien nv = new nhanvien();
     Order ord = new Order();
+    KhachHangDAO khDAO = new KhachHangDAO();
     OrderDAO ordDAO = new OrderDAO();
     DetailOrder dord = new DetailOrder();
     DetailOrderDAO dordDAO = new DetailOrderDAO();
@@ -69,7 +72,8 @@ public class Home extends HttpServlet {
             req.setAttribute("SECTION2", urlSection2);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else if (action.equals("View Info")) {
-            ArrayList<Order> ls = ordDAO.searchOrderByMaKH("MKH001");
+            String id = req.getParameter("accountid");
+            ArrayList<Order> ls = ordDAO.searchOrderByMaKH(khDAO.searchKhachHangByMaTK(id).getMaKH());
             req.setAttribute("LIST_ORDER", ls);
             req.setAttribute("VIEW", urlInfor);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
@@ -80,6 +84,11 @@ public class Home extends HttpServlet {
             RequestDispatcher rd = req.getRequestDispatcher("index.jsp");
             req.setAttribute("VIEW", urlChiTietDonHang);
             rd.forward(req, resp);
+        } else if (action.equals("Logout")) {
+            HttpSession sessionDangNhap = req.getSession();
+            sessionDangNhap.invalidate();
+            resp.sendRedirect("login.jsp");
+            return; // <--- Here.
         }
         
 

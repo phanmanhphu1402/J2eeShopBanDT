@@ -12,6 +12,7 @@ import Database.DataBase;
 public class DetailOrderDAO {
 
     sanphamDAO spDAO = new sanphamDAO();
+    chitietsanphamDAO ctDAO = new chitietsanphamDAO();
 
     public int addDetailOrder(DetailOrder detailOrder, int stt) {
         try {
@@ -68,7 +69,7 @@ public class DetailOrderDAO {
                 int donGia = rs.getInt("DonGia");
                 int soLuong = rs.getInt("SoLuong");
                 int tongTien = rs.getInt("TongTien");
-                DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien,"123","123" /*spDAO.findById(maSP).getTenSP(), spDAO.findById(maSP).getHinhanh()*/);
+                DetailOrder detailOrder = new DetailOrder(maHD, maSP, donGia, soLuong, tongTien,ctDAO.findById2(maSP).getTensp(), ctDAO.findById2(maSP).getHinhanh(), ctDAO.findById2(maSP).getMau());
                 ls.add(detailOrder);
             }
             conn.close();

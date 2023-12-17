@@ -112,5 +112,6 @@ public class chitietsanpham extends sanpham implements Serializable {
     public void setGiaIm(int gia) {
         this.giaIm = decimalFormat.format(gia);
     }
+
     
 }

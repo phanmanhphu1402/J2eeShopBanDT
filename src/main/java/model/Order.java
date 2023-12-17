@@ -9,7 +9,8 @@ public class Order {
 	private String maKM;
 	private int tongTien;
 	private Date ngayTao;
-	public Order(String maHD, String maNV, String maKH, String maKM, int tongTien, Date ngayTao) {
+        private boolean tinhTrang;
+	public Order(String maHD, String maNV, String maKH, String maKM, int tongTien, Date ngayTao, boolean tinhTrang) {
 		super();
 		this.maHD = maHD;
 		this.maNV = maNV;
@@ -17,7 +18,16 @@ public class Order {
 		this.maKM = maKM;
 		this.tongTien = tongTien;
 		this.ngayTao = ngayTao;
+                this.tinhTrang = tinhTrang;
 	}
+
+    public boolean isTinhTrang() {
+        return tinhTrang;
+    }
+
+    public void setTinhTrang(boolean tinhTrang) {
+        this.tinhTrang = tinhTrang;
+    }
 
 	public Order() {
 		super();

@@ -169,6 +169,33 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         }
         return ct;
     }
+    
+    public chitietsanpham findById2(String id) {
+        chitietsanpham ct = new chitietsanpham();
+        try (Connection conn = new DataBase().getConnection()) {
+            Statement st = conn.createStatement();
+            String query = "select * from SanPham sp join ChiTietSanPham ct on sp.MaSP=ct.MaSP where ct.MaCT='" + id + "'";
+            ResultSet rs = st.executeQuery(query);
+            System.out.println(query);
+            while (rs.next()) {
+                String mact = rs.getString("MaCT");
+                String masp = rs.getString("MaSP");
+                String tensp = rs.getString("TenSP");
+                String maloai = rs.getString("MaLoai");
+                String mau = rs.getString("Mau");
+                int gianhap = rs.getInt("GiaNhap");
+                int giaban = rs.getInt("GiaBan");
+                int soluong = rs.getInt("SoLuong");
+                String hinhanh = rs.getString("HinhAnh");
+                String mota = rs.getString("MoTa");
+                chitietsanpham sp = new chitietsanpham(mact, mau, gianhap, giaban, soluong, masp, maloai, tensp, mota, hinhanh);
+                ct = sp;
+            }
+        } catch (Exception e) {
+
+        }
+        return ct;
+    }
 
     public List<chitietsanpham> findByIdList(String id) {
         List<chitietsanpham> list = new ArrayList<>();

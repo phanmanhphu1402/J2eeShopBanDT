@@ -15,6 +15,7 @@
             <tr class="info">
                 <th>Tên Sản Phẩm</th>
                 <th>Hình ảnh</th>
+                <th>Màu</th>
                 <th>Đơn giá</th>
                 <th>Số lượng</th>
                 <th>Tổng tiền</th>
@@ -26,6 +27,7 @@
                 <tr>
                     <td>${order.tenSP }</td>
                     <td style="width: 20%"><img src="images${order.hinhanh}" alt="product-item" class="img-fluid" ></td>
+                    <th>${order.mau }</th>
                     <td>${order.donGia } VND</td>
                     <td>${order.soLuong }</td>
                     <td>${order.tongTien } VND</td>
