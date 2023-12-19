@@ -29,11 +29,6 @@
         </div>
 
         <!-- Sidebar - Brand -->     
-        <li class="nav-item">
-            <a class="nav-link" href="ProductsController" class="list-group-item list-group-item-action py-2 ripple">
-                <i class="fas fa-file-invoice-dollar fa-fw me-3"></i>                   
-                <span>Sản phẩm</span></a>
-        </li> 
         <!--Hóa Đơn-->
         <hr class="sidebar-divider">                    
         <li class="nav-item">

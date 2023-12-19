@@ -6,6 +6,7 @@ package Controller;
 
 import model.sanpham;
 import DAO.ThongKeDAO;
+import DAO.chitietsanphamDAO;
 import DAO.sanphamDAO;
 import java.io.IOException;
 import java.util.List;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.ChiTietDonBan;
+import model.chitietsanpham;
 import model.sanphamver1;
 
 /**
@@ -41,7 +43,8 @@ public class Top10SanPhamControl extends HttpServlet {
         //
         ThongKeDAO thongke = new ThongKeDAO();
         sanphamDAO sanpham = new sanphamDAO();
-        List<sanphamver1> listSanPham = sanpham.GetAllSP();
+        chitietsanphamDAO chitietsanpham = new chitietsanphamDAO();
+        List<chitietsanpham> listSanPham = chitietsanpham.findAll();
         List<ChiTietDonBan> listTop10Product = thongke.getTop10SanPhamBanChay();
         
         request.setAttribute("listAllProduct", listSanPham);

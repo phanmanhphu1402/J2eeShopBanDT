@@ -87,7 +87,7 @@ public class chitietsanphamDAO implements iDAO<chitietsanpham> {
         try (Connection conn = DataBase.getConnection()) {
             Statement st = conn.createStatement();
 
-            String query = "select sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa \n"
+            String query = "select ct.MaCT,sp.MaSP,sp.TenSP,lsp.TenLoai,ct.Mau,ct.GiaNhap,ct.GiaBan,ct.HinhAnh,ct.SoLuong,sp.MoTa \n"
                     + "from SanPham sp \n"
                     + "join ChiTietSanPham ct on sp.MaSP=ct.MaSP join Loaisanpham lsp on lsp.MaLoai=sp.MaLoai";
             ResultSet rs = st.executeQuery(query);

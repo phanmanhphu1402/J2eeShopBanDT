@@ -5,6 +5,7 @@
 package Controller;
 
 import DAO.ThongKeDAO;
+import DAO.chitietsanphamDAO;
 import DAO.sanphamDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,6 +18,7 @@ import java.io.FileOutputStream;
 import java.util.List;
 import java.util.Random;
 import model.ChiTietDonBan;
+import model.chitietsanpham;
 import model.sanphamver1;
 import org.apache.poi.xssf.usermodel.XSSFCell;
 
@@ -45,8 +47,9 @@ public class ExportTop10SP extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
 
         ThongKeDAO thongke = new ThongKeDAO();
-        sanphamDAO sanpham = new sanphamDAO();
-        List<sanphamver1> listSanPham = sanpham.GetAllSP();
+        chitietsanphamDAO chitietsanphamDAO = new chitietsanphamDAO();
+        List<chitietsanpham> listSanPham = chitietsanphamDAO.findAll();
+//        List<sanphamver1> listSanPham = sanpham.GetAllSP();
         List<ChiTietDonBan> listTop10Product = thongke.getTop10SanPhamBanChay();
 
         int maximum = 2147483647;
@@ -97,16 +100,17 @@ public class ExportTop10SP extends HttpServlet {
 
         int i = 0;
         for (ChiTietDonBan soluong : listTop10Product) {
-            for (sanphamver1 pro : listSanPham) {
-                if (soluong.getMaSp().equals(pro.getMaSP())) {
+            for (chitietsanpham pro : listSanPham) {
+                if (soluong.getMaSp().equals(pro.getMact())) {
+                    System.out.println(soluong.getMaSp()+"--------------"+pro.getMact());
                     i = i + 1;
                     row = workSheet.createRow(i);
                     cell0 = row.createCell(0);
-                    cell0.setCellValue(pro.getMaSP());
+                    cell0.setCellValue(pro.getMact());
                     cell1 = row.createCell(1);
-                    cell1.setCellValue(pro.getTenSP());
+                    cell1.setCellValue(pro.getTensp());
                     cell2 = row.createCell(2);
-                    cell2.setCellValue(pro.getMaLoai());
+                    cell2.setCellValue(pro.getMaloai());
                     cell3 = row.createCell(3);
                     cell3.setCellValue(pro.getGiaNhap());
                     cell4 = row.createCell(4);

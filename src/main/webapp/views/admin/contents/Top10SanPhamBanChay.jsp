@@ -39,10 +39,10 @@
                                     <tbody>
                                         <c:forEach items="${listTop10Product}" var="t">
                                             <c:forEach items="${listAllProduct}" var="o">
-                                                <c:if test="${t.maSp==o.maSP }">    
+                                                <c:if test="${t.maSp==o.mact }">    
                                                     <tr>
-                                                        <td>${o.maSP}</td>
-                                                        <td>${o.tenSP}</td>
+                                                        <td>${o.mact}</td>
+                                                        <td>${o.tensp}</td>
                                                         <td>
                                                             <img src="images/${o.hinhanh}" style="width: 73%">                                                        </td>
                                                         <td>${o.gia}</td>
